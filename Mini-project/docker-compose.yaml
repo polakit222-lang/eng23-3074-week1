@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+
+  my-web:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    restart: always
+
+  my-backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    depends_on:
+      - my-database
+
+  my-database:
+    image: redis:latest
+    restart: always
